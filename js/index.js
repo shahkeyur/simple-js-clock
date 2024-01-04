@@ -1,4 +1,4 @@
-var url = `https://pixabay.com/api/?key=21533879-42550560049a6543e086fd75c&q=${getCurrentPeriodOfDay()}&color=black&order=latest`;
+var url = `https://pixabay.com/api/?key=21533879-42550560049a6543e086fd75c&q=dark+${getCurrentPeriodOfDay()}&color=black&order=latest`;
 
 var persistent_settings = {
   // Show 24-hours on clock
