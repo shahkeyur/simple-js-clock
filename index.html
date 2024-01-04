@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <!-- CSS Links -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- End CSS Links -->
+  </head>
+  <body>
+    <!-- Settings Bar -->
+    <div class="sidebar left p-3" id="nav-settings">
+      <form class="text-light" id="form-settings">
+        <h1 class="text-light mb-3">Settings</h1>
+        <hr />
+        <div>
+          <label class="font-weight-bold">24-Hours Clock</label> <br />
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="clock-hours"
+              id="true-clock-hours"
+              value="true"
+            />
+            <label class="form-check-label" for="true-clock-hours">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="clock-hours"
+              id="false-clock-hours"
+              value="false"
+            />
+            <label class="form-check-label" for="false-clock-hours">No</label>
+          </div>
+        </div>
+        <hr />
+        <div>
+          <label class="font-weight-bold">Show Seconds</label> <br />
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="clock-seconds"
+              id="true-clock-seconds"
+              value="true"
+            />
+            <label class="form-check-label" for="true-clock-seconds">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="clock-seconds"
+              id="false-clock-seconds"
+              value="false"
+            />
+            <label class="form-check-label" for="false-clock-seconds">No</label>
+          </div>
+        </div>
+        <hr />
+        <div>
+          <label class="font-weight-bold">Show Date</label> <br />
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="clock-date"
+              id="true-clock-date"
+              value="true"
+            />
+            <label class="form-check-label" for="true-clock-date">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="clock-date"
+              id="false-clock-date"
+              value="false"
+            />
+            <label class="form-check-label" for="false-clock-date">No</label>
+          </div>
+        </div>
+        <hr />
+
+        <input
+          class="btn btn-light float-right mt-3"
+          type="Submit"
+          value="Save"
+        />
+        <input
+          class="btn btn-light float-left mt-3"
+          onclick="closeSidebar()"
+          type="button"
+          value="Close"
+        />
+      </form>
+    </div>
+    <!-- End Settings Bar -->
+    <div id="main">
+      <!-- Main Content -->
+      <i class="fa fa-cog text-white cursor-pointer" id="btn-settings" aria-hidden="true"></i>
+      <!-- Greet Container -->
+      <h1 class="text-white text-center font-weight-light">
+        <span id="greet"></span>It's Currently
+      </h1>
+      <!-- Time Container -->
+      <div class="display-1 text-center text-light" id="time"></div>
+      <!-- Date Container -->
+      <h2 class="text-white text-center font-weight-light">
+        <span id="date"></span>
+      </h2>
+      <button class="btn btn-light" id="btn-info">More</button>
+    </div>
+    <!-- End Main Content -->
+    <!-- Pixabay Logo -->
+    <a
+      class="position-absolute text-right"
+      style="bottom: 12px; right: 12px"
+      href="https://pixabay.com/"
+    >
+      <img
+        class="w-25"
+        src="https://pixabay.com/static/img/public/medium_rectangle_b.png"
+        alt="Pixabay"
+      />
+    </a>
+    <!-- End Pixabay Logo -->
+    <!-- Bottom Bar -->
+    <div class="sidebar bottom m-0" id="more-info">
+      <div class="sidebar-content row">
+        <div
+          class="col-6 d-flex justify-content-center flex-column p-3 text-center"
+        >
+          <h5 class="font-weight-normal text-secondary">DAY OF THE WEEK</h5>
+          <h3 class="03" id="day-of-week"></h3>
+        </div>
+        <div
+          class="col-6 d-flex justify-content-center flex-column p-3 text-center"
+        >
+          <h5 class="font-weight-normal text-secondary">DAY OF THE MONTH</h5>
+          <h3 class="03" id="day-of-month"></h3>
+        </div>
+        <div
+          class="col-6 d-flex justify-content-center flex-column p-3 text-center"
+        >
+          <h5 class="font-weight-normal text-secondary">DAY OF THE YEAR</h5>
+          <h3 class="03" id="day-of-year"></h3>
+        </div>
+        <div
+          class="col-6 d-flex justify-content-center flex-column p-3 text-center"
+        >
+          <h5 class="font-weight-normal text-secondary">WEEK OF THE YEAR</h5>
+          <h3 class="03" id="week-of-year"></h3>
+        </div>
+      </div>
+    </div>
+    <!-- End Bottom Bar -->
+    <!-- Start Scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.25.0/build/global/luxon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sidebar/3.3.2/jquery.sidebar.min.js"></script>
+    <script src="js/index.js"></script>
+    <!-- End Scripts -->
+  </body>
+</html>
