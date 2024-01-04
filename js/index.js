@@ -1,9 +1,4 @@
-// Queries keywords for pixabay image
-const queries = ["morning", "evening", "night", "wildlife", "nasa", "sleep"];
-// URL to fetch from NASA API
-var url = `https://pixabay.com/api/?key=21533879-42550560049a6543e086fd75c&q=${
-  queries[Math.round(Math.random() * queries.length)]
-}&color=red&order=latest`;
+var url = `https://pixabay.com/api/?key=21533879-42550560049a6543e086fd75c&q=${getCurrentPeriodOfDay()}&color=black&order=latest`;
 
 var persistent_settings = {
   // Show 24-hours on clock
@@ -46,10 +41,8 @@ $(document).ready(function () {
   }
 
   function updateTime() {
-    const {
-      is_24_hours_clock_enabled,
-      is_clock_seconds_enabled,
-    } = persistent_settings;
+    const { is_24_hours_clock_enabled, is_clock_seconds_enabled } =
+      persistent_settings;
 
     var hoursFormat = is_24_hours_clock_enabled ? "HH" : "hh";
     var secondsFormat = is_clock_seconds_enabled ? ":ss" : "";
@@ -200,4 +193,13 @@ function getGreeting(hours) {
   else if (hours <= 16 && hours >= 12) return "Good Afternoon";
   else if (hours <= 24 && hours >= 17) return "Good Evening";
   return "Good Night";
+}
+
+function getCurrentPeriodOfDay() {
+  var hours = new Date().getHours();
+
+  if (hours < 12 && hours > 3) return "morning";
+  else if (hours <= 16 && hours >= 12) return "afternoon";
+  else if (hours <= 24 && hours >= 17) return "evening";
+  return "night";
 }
